@@ -47,10 +47,47 @@ const restaurant = {
     // console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
   orderPizza: function (mainIngredient, ...otherIngredients) {
-    console.log(mainIngredient);
-    console.log(otherIngredients);
+    // console.log(mainIngredient);
+    // console.log(otherIngredients);
   },
 };
+
+// ! The Nullish Coelescing Operator
+
+// restaurant.numGuests = 0;
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
+
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
+
+// ! Short circuiting
+
+// console.log(3 || 'Noah');
+// console.log('' || 'Noah');
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// console.log(undefined || 0 || '' || 'hello' || 23 || null);
+
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// console.log('-------AND---------');
+
+// console.log(0 && 'Noah');
+// console.log(7 && 'Noah');
+
+// console.log('hello' && 23 && null && 'Noah');
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 // ! Rest Pattern
 
@@ -59,25 +96,25 @@ const restaurant = {
 const arr = [1, 2, ...[3, 4]];
 
 const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+// console.log(a, b, others);
 
 const [pizza, , risotto, ...otherFood] = [
   ...restaurant.mainMenu,
   ...restaurant.starterMenu,
 ];
-console.log(pizza, risotto, otherFood);
+// console.log(pizza, risotto, otherFood);
 
 // * objects
 
 const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// console.log(weekdays);
 
 // 2)  functions
 
 const add = function (...numbers) {
   let sum = 0;
   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
-  console.log(sum);
+  // console.log(sum);
 };
 add(2, 3);
 add(5, 3, 7, 2);
