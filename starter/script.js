@@ -98,7 +98,7 @@ const restaurant = {
 
 // 1) destructuring
 
-const arr = [1, 2, ...[3, 4]];
+// const arr = [1, 2, ...[3, 4]];
 
 const [a, b, ...others] = [1, 2, 3, 4, 5];
 // console.log(a, b, others);
@@ -134,12 +134,12 @@ restaurant.orderPizza('mushrooms');
 // ! The Spread Operator
 
 // const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 // console.log(badNewArr);
 
 // * using the spread operator instead of bad example above
 
-const newArr = [1, 2, ...arr];
+// const newArr = [1, 2, ...arr];
 // console.log(newArr);
 // console.log(arr);
 
@@ -337,24 +337,88 @@ const ordersSet = new Set([
   'pizza',
 ]);
 
-console.log(ordersSet);
-console.log(new Set(['Noah']));
+// console.log(ordersSet);
+// console.log(new Set(['Noah']));
 
-console.log(ordersSet.size);
+// console.log(ordersSet.size);
 
-console.log(ordersSet.has('pizza'));
-console.log(ordersSet.has('pickles'));
+// console.log(ordersSet.has('pizza'));
+// console.log(ordersSet.has('pickles'));
 
 ordersSet.add('garlic bread');
 ordersSet.add('garlic bread');
 ordersSet.delete('risotto');
 // ordersSet.clear();
 
-console.log(ordersSet);
+// console.log(ordersSet);
 
-for (const order of ordersSet) console.log(order);
+// for (const order of ordersSet) console.log(order);
 
 const staff = ['waiter', 'cashier', 'chef', 'manager'];
 const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
-console.log(new Set(['waiter', 'cashier', 'chef', 'manager']).size);
+// console.log(staffUnique);
+// console.log(new Set(['waiter', 'cashier', 'chef', 'manager']).size);
+
+// ! Mapping
+
+const rest = new Map();
+rest.set('name', 'classico italiano');
+rest.set(1, 'Firencze, Italy');
+console.log(rest.set(2, 'Lisben, Portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open!')
+  .set(false, 'We are closed');
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+
+const time = 21;
+rest.get(time > rest.get('open') && time < rest.get('close'));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+rest.set(document.querySelector('h1'), 'Heading');
+
+console.log(rest);
+console.log(rest.size);
+console.log(rest.get(arr));
+
+// ! Working with strings 1
+
+const airline = 'RYANAIR Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('R'));
+console.log(airline.lastIndexOf('R'));
+console.log(airline.indexOf('portugal'));
+console.log(airline.slice(4, 7));
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.indexOf(' ') + 1));
+
+console.log(airline.slice(-5));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') {
+    console.log('You got the middle seat');
+  } else console.log('You did not get the middle seat!');
+};
+checkMiddleSeat('11C');
+checkMiddleSeat('11B');
+checkMiddleSeat('11E');
