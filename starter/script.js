@@ -422,3 +422,63 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat('11C');
 checkMiddleSeat('11B');
 checkMiddleSeat('11E');
+
+// ! Working with strings 2
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = 'NOAH';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// Check email
+
+const email = 'whatsgood@sherm.com';
+const loginEmail = '  Whatsgood@sherm.com \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+const normalizeEmail = loginEmail.toLowerCase().trim();
+console.log(normalizeEmail);
+console.log(email === normalizeEmail);
+
+// replacing
+const priceGB = '322,98£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+
+console.log(priceUS);
+
+const announcement = 'All passengers come to door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, 'gate'));
+
+// Boolean methods
+
+const plane2 = 'Airbus A320neo';
+console.log(plane2.includes('A320'));
+console.log(plane2.includes('Boeing'));
+console.log(plane2.startsWith('Air'));
+
+if (plane2.startsWith('Airbus') && plane2.endsWith('neo')) {
+  console.log('Part of the NEW AIRBUS FAMILY');
+}
+
+// practice exercise
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife')) {
+    console.log('You are not allowed on the plane');
+  } else console.log('You are welcome!');
+};
+checkBaggage('I have a laptop, some food and a pockect knife');
+checkBaggage('Socks, and a camera');
+checkBaggage('I got some snacks and a hairbrush for combing');
