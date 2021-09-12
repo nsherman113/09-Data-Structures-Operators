@@ -130,3 +130,11 @@ for (const [team, odd] of Object.entries(game.odds)) {
 //  Hummels: 1,
 //  Lewandowski: 2
 // }
+
+// ! Challenge 4
+
+const testString = 'underscore_case'.toUpperCase('');
+console.log(testString);
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
