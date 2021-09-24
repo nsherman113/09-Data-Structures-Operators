@@ -4,6 +4,20 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+console.log(flights.split('+'));
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''} ${type.replaceAll(
+    '_',
+    ' '
+  )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
+  console.log(output);
+}
+
 const weekdays = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 const openingHours = {
   [weekdays[3]]: {
@@ -44,70 +58,70 @@ const restaurant = {
     time = '20:00',
     address,
   }) {
-    // console.log(
-    //   `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time} !`
-    // );
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time} !`
+    );
   },
   orderPasta: function (ing1, ing2, ing3) {
-    // console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
   orderPizza: function (mainIngredient, ...otherIngredients) {
-    // console.log(mainIngredient);
-    // console.log(otherIngredients);
+    console.log(mainIngredient);
+    console.log(otherIngredients);
   },
 };
 
 // ! The Nullish Coelescing Operator
 
-// restaurant.numGuests = 0;
-// const guests = restaurant.numGuests || 10;
-// console.log(guests);
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
 
-// const guestCorrect = restaurant.numGuests ?? 10;
-// console.log(guestCorrect);
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
 
 // ! Short circuiting
 
-// console.log(3 || 'Noah');
-// console.log('' || 'Noah');
-// console.log(true || 0);
-// console.log(undefined || null);
+console.log(3 || 'Noah');
+console.log('' || 'Noah');
+console.log(true || 0);
+console.log(undefined || null);
 
-// console.log(undefined || 0 || '' || 'hello' || 23 || null);
+console.log(undefined || 0 || '' || 'hello' || 23 || null);
 
-// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-// console.log(guests1);
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
 
-// const guests2 = restaurant.numGuests || 10;
-// console.log(guests2);
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
 
-// console.log('-------AND---------');
+console.log('-------AND---------');
 
-// console.log(0 && 'Noah');
-// console.log(7 && 'Noah');
+console.log(0 && 'Noah');
+console.log(7 && 'Noah');
 
-// console.log('hello' && 23 && null && 'Noah');
+console.log('hello' && 23 && null && 'Noah');
 
-// if (restaurant.orderPizza) {
-//   restaurant.orderPizza('mushrooms', 'spinach');
-// }
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
 
-// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 // ! Rest Pattern
 
 // 1) destructuring
 
-// const arr = [1, 2, ...[3, 4]];
+const arr = [1, 2, ...[3, 4]];
 
 const [a, b, ...others] = [1, 2, 3, 4, 5];
-// console.log(a, b, others);
+console.log(a, b, others);
 
 const [pizza, , risotto, ...otherFood] = [
   ...restaurant.mainMenu,
   ...restaurant.starterMenu,
 ];
-// console.log(pizza, risotto, otherFood);
+console.log(pizza, risotto, otherFood);
 
 // * objects
 
@@ -119,7 +133,7 @@ const [pizza, , risotto, ...otherFood] = [
 const add = function (...numbers) {
   let sum = 0;
   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
-  // console.log(sum);
+  console.log(sum);
 };
 add(2, 3);
 add(5, 3, 7, 2);
@@ -139,46 +153,46 @@ restaurant.orderPizza('mushrooms');
 
 // * using the spread operator instead of bad example above
 
-// const newArr = [1, 2, ...arr];
-// console.log(newArr);
-// console.log(arr);
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+console.log(arr);
 
 // * useful example of spread operator
 
 const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-// console.log(newMenu);
+console.log(newMenu);
 
 // * copy array
 const mainMenuCopy = [...restaurant.mainMenu];
 //  * join two arrays
-// const menu = [...restaurant.starterMenu, ...mainMenuCopy];
-// console.log(menu);
+const menu = [...restaurant.starterMenu, ...mainMenuCopy];
+console.log(menu);
 
 // * iterables - using spread operator on everything but objects
 const str = 'Noah';
 const letters = [...str, 'S.'];
-// console.log(letters);
+console.log(letters);
 
 // *objects
 
-// const ingredients = [
-//   prompt("Let/'s make pasta! Ingredient 1?"),
-//   prompt('Ingredient 2?'),
-//   prompt('Ingredient 3?'),
-// ];
-// console.log(ingredients);
+const ingredients = [
+  prompt("Let/'s make pasta! Ingredient 1?"),
+  prompt('Ingredient 2?'),
+  prompt('Ingredient 3?'),
+];
+console.log(ingredients);
 
-// restaurant.orderPasta(...ingredients);
+restaurant.orderPasta(...ingredients);
 
 // * Objects (since ES2018, we are actually able to use the spread operator with objects)
 
 const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'SHERM' };
-// console.log(newRestaurant);
+console.log(newRestaurant);
 
 const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
-// console.log(restaurantCopy.name);
-// console.log(restaurant.name);
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
 
 // ! Destructuring Objects
 
@@ -186,13 +200,13 @@ restaurantCopy.name = 'Ristorante Roma';
 
 // console.log(name, openingHours, categories);
 
-// const {
-//   name: restaurantName,
-//   openingHours: hours,
-//   categories: tags,
-// } = restaurant;
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
 
-// console.log(restaurantName, hours, tags);
+console.log(restaurantName, hours, tags);
 
 // * default values
 
@@ -209,10 +223,10 @@ restaurantCopy.name = 'Ristorante Roma';
 
 // * nested objects
 
-// const {
-//   fri: { open, close },
-// } = openingHours;
-// console.log(open, close);
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
 
 // ! Destructuring arrays
 
@@ -225,49 +239,49 @@ restaurantCopy.name = 'Ristorante Roma';
 // const [x, y, z] = arr;
 // console.log(x, y, c);
 
-// let [main, , secondary] = restaurant.categories;
-// console.log(main, secondary);
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary);
 
 // * Changing variables
-// const temp = main;
-// main = secondary;
-// secondary = temp;
-// console.log(main, secondary);
+const temp = main;
+main = secondary;
+secondary = temp;
+console.log(main, secondary);
 
 // *
 
-// [main, secondary] = [secondary, main];
-// console.log(main, secondary);
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
 
-// const [starter, mainCourse] = restaurant.order(2, 0);
-// console.log(starter, mainCourse);
+const [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse);
 
 // Nested Destructuring
-// const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
-// console.log(i, j);
+const nested = [2, 4, [5, 6]];
+const [i, , j] = nested;
+console.log(i, j);
 
 // const [i, , [j, k]] = nested;
 // console.log(i, j, k);
 
 //  Default Values
-// const [p, q, r = 1] = [8, 9];
-// console.log(p, q, r);
+const [p, q, r = 1] = [8, 9];
+console.log(p, q, r);
 
 //
 
 // ! The for-of loop (new way of looping in ES6)
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-// console.log(menu)
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
 
 for (const item of menu) console.log(item);
 
 for (const [i, el] of menu.entries()) {
-  // console.log(`${i + 1}: ${el}`);
+  console.log(`${i + 1}: ${el}`);
 }
 
-// console.log([...menu.entries()]);
+console.log([...menu.entries()]);
 
 // ! Optional Chaining
 
@@ -277,7 +291,7 @@ if (restaurant.openingHours && restaurant.openingHours.mon)
 
 // With optional trainging ES2020
 
-// console.log(restaurant.openingHours?.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
 
 // example
 
@@ -285,45 +299,46 @@ const days = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 
 for (const day of days) {
   restaurant.openingHours[day]?.open ?? 'closed';
-  // console.log(`on ${day}, we are open at ${open}`);
+  console.log(`on ${day}, we are open at ${open}`);
 }
 
 // methods
 
-// console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
-// console.log(restaurant.orderRisotto?.(0,1) ?? 'Method does not exist');
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
 
 // Arrays
 
 const users = [{ email: 'noah@sherm.com' }];
 
-// console.log(users[0]?.name ?? 'User array empty');
+console.log(users[0]?.name ?? 'User array empty');
 
-// if(users.length > 0) console.log(users[0].name); else console.log('user array empty');
+if (users.length > 0) console.log(users[0].name);
+else console.log('user array empty');
 
 // ! Looping objects: Object Keys, Values, and Entries
 
 // Property names
 const properties = Object.keys(openingHours);
-// console.log(properties);
+console.log(properties);
 
 let openString = `we are open on ${properties.length} days:`;
 for (const day of properties) {
   openString += `${day},`;
 }
-// console.log(openString);
+console.log(openString);
 
 // Property values
 const values = Object.values(openingHours);
-// console.log(values);
+console.log(values);
 
 // Entire object
 
 const entries = Object.entries(openingHours);
-// console.log(openingHours);
+console.log(openingHours);
 
 for (const [key, { open, close }] of entries) {
-  // console.log(`On ${key} we open at ${open} and close at ${close}` );
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
 
 // ! Sets
@@ -337,27 +352,27 @@ const ordersSet = new Set([
   'pizza',
 ]);
 
-// console.log(ordersSet);
-// console.log(new Set(['Noah']));
+console.log(ordersSet);
+console.log(new Set(['Noah']));
 
-// console.log(ordersSet.size);
+console.log(ordersSet.size);
 
-// console.log(ordersSet.has('pizza'));
-// console.log(ordersSet.has('pickles'));
+console.log(ordersSet.has('pizza'));
+console.log(ordersSet.has('pickles'));
 
 ordersSet.add('garlic bread');
 ordersSet.add('garlic bread');
 ordersSet.delete('risotto');
-// ordersSet.clear();
+ordersSet.clear();
 
-// console.log(ordersSet);
+console.log(ordersSet);
 
-// for (const order of ordersSet) console.log(order);
+for (const order of ordersSet) console.log(order);
 
 const staff = ['waiter', 'cashier', 'chef', 'manager'];
 const staffUnique = [...new Set(staff)];
-// console.log(staffUnique);
-// console.log(new Set(['waiter', 'cashier', 'chef', 'manager']).size);
+console.log(staffUnique);
+console.log(new Set(['waiter', 'cashier', 'chef', 'manager']).size);
 
 // ! Mapping
 
@@ -382,9 +397,9 @@ rest.get(time > rest.get('open') && time < rest.get('close'));
 console.log(rest.has('categories'));
 rest.delete(2);
 
-const arr = [1, 2];
-rest.set(arr, 'Test');
-rest.set(document.querySelector('h1'), 'Heading');
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// rest.set(document.querySelector('h1'), 'Heading');
 
 console.log(rest);
 console.log(rest.size);
@@ -505,7 +520,7 @@ const capitalizeName = function (name) {
 capitalizeName('jessica ann smith davis');
 capitalizeName('noah sherman');
 
-// Padding
+Padding;
 const message = 'go to gate 23';
 console.log(message.padStart(25, '+').padEnd(34, '+'));
 console.log('Noah'.padStart(25, '+'));
@@ -519,7 +534,7 @@ const maskCreditCard = function (number) {
 console.log(maskCreditCard(433754654646));
 maskCreditCard('545645613212456');
 
-// Repeat
+Repeat;
 const message2 = 'Bad Weather... All Departures are delayed...';
 console.log(message2.repeat(5));
 
